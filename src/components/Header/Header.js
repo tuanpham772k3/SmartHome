@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Navbar, Container } from 'react-bootstrap';
+import { Button, Navbar, Container, Dropdown } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { FaCog } from 'react-icons/fa'; // Import biểu tượng cài đặt từ react-icons
 
@@ -14,13 +14,19 @@ const Header = ({ onLogout }) => {
                     <Button variant="outline-light" onClick={onLogout}>
                         Đăng xuất
                     </Button>
-                    <FaCog
-                        style={{
-                            marginLeft: '10px',
-                            color: 'white',
-                            fontSize: '24px' // Tăng kích thước biểu tượng
-                        }}
-                    />
+
+                    {/* Dropdown cho biểu tượng cài đặt */}
+                    <Dropdown align="end" style={{ marginLeft: '10px' }}>
+                        <Dropdown.Toggle variant="link" id="dropdown-basic" style={{ color: 'white' }}>
+                            <FaCog style={{ fontSize: '24px' }} />
+                        </Dropdown.Toggle>
+
+                        <Dropdown.Menu>
+                            <Dropdown.Item as={Link} to="/settings/profile">Cài đặt tài khoản</Dropdown.Item>
+                            <Dropdown.Item as={Link} to="/settings/preferences">Tùy chọn</Dropdown.Item>
+                            <Dropdown.Item as={Link} to="/help">Trợ giúp</Dropdown.Item>
+                        </Dropdown.Menu>
+                    </Dropdown>
                 </div>
             </Container>
         </Navbar>
